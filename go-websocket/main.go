@@ -5,6 +5,7 @@ import (
 	"github.com/gorilla/websocket"
 	"net/http"
 	"sync"
+	"math"
 )
 	// Upgrader is used to upgrade HTTP connections to WebSocket connections.
 var upgrader = websocket.Upgrader{
@@ -65,7 +66,7 @@ func getGameState() GameState {
 			state.Players,
 			PlayerState{
 				ID: p.ID,
-				X: p.X
+				X: p.X,
 				Y: p.Y,
 			},
 		)
@@ -79,9 +80,58 @@ func broadcastState() {
 	mutex.RLock()
 	defer mutex.RUnlock()
 
-	for _, player := range players {
+	for _, player := range Players {
 		player.Conn.WriteJSON(state)
 	}
+}
+
+func moveUnits(p int) {
+	for _, o := range Players[p][offenses] {
+		target := players[p][offtarget]
+		if players[target][home][X] > players[p][offenses][o][X] {
+			players[p][offenses][o][X] += 1
+		}
+		if players[target][home][X] < players[p][offenses][o][X] {
+			players[p][offenses][o][X] -= 1
+		}
+		if players[target][home][Y] > players[p][offenses][o][X] {
+			players[p][offenses][o][Y] += 1
+		}
+		if players[target][home][Y] > players[p][offenses][o][X] {
+			players[p][offenses][o][Y] += 1
+		}
+	return
+	}	
+}
+
+func updateCombat() {
+	for _, p := range Players {
+		if players[p][alive] == true {
+			for _, d := range Players[p][defenses] {
+				defTarget := findDefTarget(p, d)
+				dealDamage(defTarget)
+			}
+		}
+	}
+}
+
+func findDefTarget(p int, d int) target []byte {
+	target := [0,0]
+	minDist := 100000000
+	for _, p1 := range Players {
+		if players[p1][alive] == true && p != p1 {
+			for _, o := range Players[p1][offenses] {
+				distX := int(players[p][defenses][d][X] - players[p][offenses][o][X])
+				distY := int(players[p][defenses][d][Y] - players[p][offenses][o][Y])
+				hypo := int(math.Sqrt(int(math.Pow(distX, 2)) + int(math.Pow(distY, 2))))
+				if minDist > hypo {
+					minDist = hypo
+					target = [p1, o]
+				}
+			}
+		}
+	}
+	return target
 }
 
 func wsHandler(w http.ResponseWriter, r *http.Request) {
@@ -92,14 +142,12 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	mutex.RLock()
 	userID := r.URL.Query().Get("userID")
 	if userID == "" {
 		http.Error(w, "UserID is required", http.StatusBadRequest)
 		return
 	}
 	if len(players) >= 4 {
-		mutex.RUnlock()
 		http.Error(w, "Game Full", http.StatusForbidden)
 		return
 	}
@@ -116,7 +164,6 @@ func wsHandler(w http.ResponseWriter, r *http.Request) {
 		Y:		0,
 	}
 	players[id] = player
-	mutex.RUnlock()
 
 	defer conn.Close()
 
@@ -136,13 +183,28 @@ func handleConnection(player *Player) {
 		case "move":
 		}
 	}
-	fmt.Printf("Received: %s\n", message)
-	if err := conn.WriteMessage(websocket.TextMessage, message); err != nil {
+	fmt.Printf("Received: %s\n", msg)
+	if err := conn.WriteMessage(websocket.TextMessage, msg); err != nil {
 		fmt.Println("Error writing message:", err)
 		break
 	}
 }
-														  }
+
+func gameLoop() {
+    ticker := time.NewTicker(
+        100 * time.Millisecond,
+    )
+    for range ticker.C {
+		for _, p := range Players {
+			if players[p][alive] == true {
+				moveUnits(p)
+			}
+			updateCombat()
+//        collectResources()
+//        checkVictory()
+//        broadcastState()
+    }
+}
 
 func main() {
 	http.HandleFunc("/ws", wsHandler)
@@ -151,6 +213,7 @@ func main() {
 	if err != nil {
 		fmt.Println("Error starting server:", err)
 	}
+	gameLoop()
 }
 
 

@@ -6,23 +6,26 @@
         "alive": false,
         "money": 0,
         "home": {
-            "pos": [0.00, 0.00],
+            "X": 0.00,
+            "Y": 0.00,
             "health": 0
         },
         "defdamage": 10,
         "defrof": 10,
         "defenses": [{
             "id": 1,
-            "pos": [0.00, 0.00],
+            "X": 0.00,
+            "Y": 0.00,
             "range": 10,
             "target": [0, 0]
             }]
         }],
         "offspeed": 5,
         "offdamage": 10,
+        "offtarget": 0,
         "offenses": [{
-            "pos": [0.00, 0.00],
-            "target": 0
+            "X": 0.00,
+            "Y": 0.00
         }]
     },
     {
@@ -31,23 +34,27 @@
         "money": 0,
         "defenses": [{
         "home": {
-            "pos": [0.00, 0.00],
+            "X": 0.00,
+            "Y": 0.00,
             "health": 0
         },
         "defdamage": 10,
         "defrof": 10,
         "defenses": [{
             "id": 1,
-            "pos": [0.00, 0.00],
+            "level": 1,
+            "X": 0.00,
+            "Y": 0.00,
             "range": 10,
             "target": [0, 0]
             }]
         }],
         "offspeed": 5,
         "offdamage": 10,
+        "offtarget": 0,
         "offenses": [{
-            "pos": [0.00, 0.00],
-            "target": 0
+            "X": 0.00,
+            "Y": 0.00
         }]
     },
     {
@@ -56,23 +63,26 @@
         "money": 0,
         "defenses": [{
         "home": {
-            "pos": [0.00, 0.00],
+            "X": 0.00,
+            "Y": 0.00,
             "health": 0
         },
         "defdamage": 10,
         "defrof": 10,
         "defenses": [{
             "id": 1,
-            "pos": [0.00, 0.00],
+            "X": 0.00,
+            "Y": 0.00,
             "range": 10,
             "target": [0, 0]
             }]
         }],
         "offspeed": 5,
         "offdamage": 10,
+        "offtarget": 0,
         "offenses": [{
-            "pos": [0.00, 0.00],
-            "target": 0
+            "X": 0.00,
+            "Y": 0.00,
         }]
     },
     {
@@ -81,7 +91,8 @@
         "money": 0,
         "defenses": [{
         "home": {
-            "pos": [0.00, 0.00],
+            "X": 0.00,
+            "Y": 0.00,
             "health": 0
         },
         "defdamage": 10,
@@ -89,22 +100,67 @@
         "defcool": 5,
         "defenses": [{
             "id": 1,
-            "pos": [0.00, 0.00],
+            "X": 0.00,
+            "Y": 0.00,
             "range": 10,
             "target": [0, 0]
             }]
         }],
         "offspeed": 5,
         "offdamage": 10,
+        "offtarget": 0,
         "offenses": [{
             "id": 1,
             "health": 20,
-            "pos": [0.00, 0.00],
+            "X": 0.00,
+            "Y": 0.00,
             "target": 0
         }]
     }],
     "resources": [{
-        "pos": [0.00, 0.00],
+        "X": 0.00,
+        "Y": 0.00,
         "value": 1000
-    }]
+    }],
+    "upgrades": [{
+        "level": 1,
+        "cost": 100
+    },
+    {
+        "level": 2,
+        "cost": 200
+    },
+    {
+        "level": 3,
+        "cost": 300
+    },
+    {
+        "level": 4,
+        "cost": 400
+    },
+    {
+        "level": 5,
+        "cost": 500
+    },
+    {
+        "level": 6,
+        "cost": 600
+    },
+    {
+        "level": 7,
+        "cost": 100
+    },
+    {
+        "level": 8,
+        "cost": 800
+    },
+    {
+        "level": 9,
+        "cost": 100
+    },
+    {
+        "level": 10,
+        "cost": 1000
+    }
+    ] 
 }
