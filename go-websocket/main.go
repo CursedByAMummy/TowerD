@@ -18,12 +18,25 @@ var (
 	mutex 	sync.RWMutex
 )
 
-type Player struct {
-	ID string
-	Conn *websocket.Conn
+type Game struct {
+	Players map[string]*PlayerState
+	Resources []Resource
+}
 
-	X int
-	Y int
+type PlayerState struct {
+	ID			string
+	Money		int
+	Alive		bool
+	
+	Home		Home
+	Defenses	[]Defenses
+	Offenses	[]Offenses
+}
+
+type Player struct {
+	ID 			string
+	Username	string
+	Conn 		*websocket.Conn
 }
 
 type ClientMessage struct {
@@ -139,3 +152,32 @@ func main() {
 		fmt.Println("Error starting server:", err)
 	}
 }
+
+
+
+`"switch msg.Type {
+
+case "move":
+
+    switch msg.Direction {
+
+    case "up":
+        player.Y--
+
+    case "down":
+        player.Y++
+
+    case "left":
+        player.X--
+
+    case "right":
+        player.X++
+    }
+
+    fmt.Printf(
+        "%s moved to (%d,%d)\n",
+        player.ID,
+        player.X,
+        player.Y,
+    )
+}"`

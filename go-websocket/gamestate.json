@@ -5,25 +5,23 @@
         "ID": 1,
         "alive": false,
         "money": 0,
+        "home": {
+            "pos": [0.00, 0.00],
+            "health": 0
+        },
+        "defdamage": 10,
+        "defrof": 10,
         "defenses": [{
-            "home": {
-                "pos": [0.00, 0.00],
-                "health": 0
-            },
-            "turrets": {
-                "damage": 10,
-                "rof": 10,
-                "present": [{
-                    "pos": [0.00, 0.00],
-                    "range": 10,
-                    "target": [0, 0]
-                }]
-            }
+            "id": 1,
+            "pos": [0.00, 0.00],
+            "range": 10,
+            "target": [0, 0]
+            }]
         }],
+        "offspeed": 5,
+        "offdamage": 10,
         "offenses": [{
             "pos": [0.00, 0.00],
-            "speed": 5,
-            "damage": 10,
             "target": 0
         }]
     },
@@ -32,24 +30,23 @@
         "alive": false,
         "money": 0,
         "defenses": [{
-            "home": {
-                "pos": [0.00, 0.00],
-                "health": 0
-            },
-            "turrets": {
-                "damage": 10,
-                "rof": 10,
-                "present": [{
-                    "pos": [0.00, 0.00],
-                    "range": 10,
-                    "target": [0, 0]
-                }]
-            }
+        "home": {
+            "pos": [0.00, 0.00],
+            "health": 0
+        },
+        "defdamage": 10,
+        "defrof": 10,
+        "defenses": [{
+            "id": 1,
+            "pos": [0.00, 0.00],
+            "range": 10,
+            "target": [0, 0]
+            }]
         }],
+        "offspeed": 5,
+        "offdamage": 10,
         "offenses": [{
             "pos": [0.00, 0.00],
-            "speed": 5,
-            "damage": 10,
             "target": 0
         }]
     },
@@ -58,24 +55,23 @@
         "alive": false,
         "money": 0,
         "defenses": [{
-            "home": {
-                "pos": [0.00, 0.00],
-                "health": 0
-            },
-            "turrets": {
-                "damage": 10,
-                "rof": 10,
-                "present": [{
-                    "pos": [0.00, 0.00],
-                    "range": 10,
-                    "target": [0, 0]
-                }]
-            }
+        "home": {
+            "pos": [0.00, 0.00],
+            "health": 0
+        },
+        "defdamage": 10,
+        "defrof": 10,
+        "defenses": [{
+            "id": 1,
+            "pos": [0.00, 0.00],
+            "range": 10,
+            "target": [0, 0]
+            }]
         }],
+        "offspeed": 5,
+        "offdamage": 10,
         "offenses": [{
             "pos": [0.00, 0.00],
-            "speed": 5,
-            "damage": 10,
             "target": 0
         }]
     },
@@ -84,24 +80,26 @@
         "alive": false,
         "money": 0,
         "defenses": [{
-            "home": {
-                "pos": [0.00, 0.00],
-                "health": 0
-            },
-            "turrets": {
-                "damage": 10,
-                "rof": 10,
-                "present": [{
-                    "pos": [0.00, 0.00],
-                    "range": 10,
-                    "target": [0, 0]
-                }]
-            }
-        }],
-        "offenses": [{
+        "home": {
             "pos": [0.00, 0.00],
-            "speed": 5,
-            "damage": 10,
+            "health": 0
+        },
+        "defdamage": 10,
+        "defrof": 10,
+        "defcool": 5,
+        "defenses": [{
+            "id": 1,
+            "pos": [0.00, 0.00],
+            "range": 10,
+            "target": [0, 0]
+            }]
+        }],
+        "offspeed": 5,
+        "offdamage": 10,
+        "offenses": [{
+            "id": 1,
+            "health": 20,
+            "pos": [0.00, 0.00],
             "target": 0
         }]
     }],
