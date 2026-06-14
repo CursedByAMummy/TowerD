@@ -1,0 +1,112 @@
+{
+    "timestamp": "00:00:00.000",
+    "elapsed_s": 0,
+    "players": [{
+        "ID": 1,
+        "alive": false,
+        "money": 0,
+        "defenses": [{
+            "home": {
+                "pos": [0.00, 0.00],
+                "health": 0
+            },
+            "turrets": {
+                "damage": 10,
+                "rof": 10,
+                "present": [{
+                    "pos": [0.00, 0.00],
+                    "range": 10,
+                    "target": [0, 0]
+                }]
+            }
+        }],
+        "offenses": [{
+            "pos": [0.00, 0.00],
+            "speed": 5,
+            "damage": 10,
+            "target": 0
+        }]
+    },
+    {
+        "ID": 2,
+        "alive": false,
+        "money": 0,
+        "defenses": [{
+            "home": {
+                "pos": [0.00, 0.00],
+                "health": 0
+            },
+            "turrets": {
+                "damage": 10,
+                "rof": 10,
+                "present": [{
+                    "pos": [0.00, 0.00],
+                    "range": 10,
+                    "target": [0, 0]
+                }]
+            }
+        }],
+        "offenses": [{
+            "pos": [0.00, 0.00],
+            "speed": 5,
+            "damage": 10,
+            "target": 0
+        }]
+    },
+    {
+        "ID": 3,
+        "alive": false,
+        "money": 0,
+        "defenses": [{
+            "home": {
+                "pos": [0.00, 0.00],
+                "health": 0
+            },
+            "turrets": {
+                "damage": 10,
+                "rof": 10,
+                "present": [{
+                    "pos": [0.00, 0.00],
+                    "range": 10,
+                    "target": [0, 0]
+                }]
+            }
+        }],
+        "offenses": [{
+            "pos": [0.00, 0.00],
+            "speed": 5,
+            "damage": 10,
+            "target": 0
+        }]
+    },
+    {
+        "ID": 4,
+        "alive": false,
+        "money": 0,
+        "defenses": [{
+            "home": {
+                "pos": [0.00, 0.00],
+                "health": 0
+            },
+            "turrets": {
+                "damage": 10,
+                "rof": 10,
+                "present": [{
+                    "pos": [0.00, 0.00],
+                    "range": 10,
+                    "target": [0, 0]
+                }]
+            }
+        }],
+        "offenses": [{
+            "pos": [0.00, 0.00],
+            "speed": 5,
+            "damage": 10,
+            "target": 0
+        }]
+    }],
+    "resources": [{
+        "pos": [0.00, 0.00],
+        "value": 1000
+    }]
+}
