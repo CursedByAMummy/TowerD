@@ -46,14 +46,52 @@ type ClientMessage struct {
 }
 
 type PlayerState struct {
-	ID string 	`json:"id"`
-	X int		`json:"x"`
-	Y int		`json:"y"`
+    ID    string
+    Money int
+    Alive bool
+
+    Base    Base
+    Turrets []Turret
+    Units   []Unit
 }
 
 type GameState struct {
 	Players []PlayerState `json:"players"`
 }
+
+type Position struct {
+	X 	float64:`json:"x"`
+	Y 	float64:`json:"y"`
+}
+
+type Base struct {
+    Position Position `json:"position"`
+    Health   int      `json:"health"`
+}
+
+type Unit struct {
+    ID       int      `json:"id"`
+    Position Position `json:"position"`
+
+    Health int `json:"health"`
+    Damage int `json:"damage"`
+    Speed  int `json:"speed"`
+
+    TargetPlayer string `json:"targetPlayer"`
+}
+
+type Turret struct {
+    ID int
+
+    Position Position
+
+    Health int
+    Damage int
+
+    Range float64
+    ROF   float64
+}
+
 
 func getGameState() GameState {
 	state := GameState{}
@@ -85,20 +123,31 @@ func broadcastState() {
 	}
 }
 
-func moveUnits(p int) {
+func moveUnits(player *PlayerState, game *Game) {
+	for _, p := range player.Units {
+		unit := &player.Units[i]
+
+		targetPlayer := game.Players[unit.TargetPlayer]
+
+		moveUnit(unit, &targetPlayer.Base,
+		)
+	}
+}
+
+func moveUnit(unit *Unit, targetBase *Base) {
 	for _, o := range Players[p][offenses] {
 		target := players[p][offtarget]
-		if players[target][home][X] > players[p][offenses][o][X] {
-			players[p][offenses][o][X] += 1
+		if targetBase.Position.X > unit.Position.X {
+			unit.Position.X += 1
 		}
-		if players[target][home][X] < players[p][offenses][o][X] {
-			players[p][offenses][o][X] -= 1
+		if targetBase.Position.X < unit.Position.X {
+			unit.Position.X -= 1
 		}
-		if players[target][home][Y] > players[p][offenses][o][X] {
-			players[p][offenses][o][Y] += 1
+		if targetBase.Position.Y > unit.Position.Y {
+			unit.Position.Y += 1
 		}
-		if players[target][home][Y] > players[p][offenses][o][X] {
-			players[p][offenses][o][Y] += 1
+		if targetBase.Position.Y < unit.Position.Y {
+			unit.Position.Y -= 1
 		}
 	return
 	}	
@@ -113,6 +162,13 @@ func updateCombat() {
 			}
 		}
 	}
+}
+
+func inRange(turret Turret, unit Unit) bool {
+	dx := turret.Position.X - unit.Position.X
+	dy := turret.Position.Y - unit.Position.Y
+	distance := math.Sqrt(dx*dx + dy*dy)
+	return distance <= turret.Range
 }
 
 func findDefTarget(p int, d int) target []byte {
